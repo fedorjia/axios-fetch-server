@@ -1,0 +1,19 @@
+{
+  "name": "axios-fetch-server",
+  "version": "1.0.6",
+  "description": "axios fetch wrapper for node",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fedorjia/fetch-server.git"
+  },
+  "keywords": [],
+  "author": "Fedor",
+  "license": "ISC",
+  "homepage": "",
+  "devDependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0",
+    "querystring": "^0.2.0"
+  }
+}
