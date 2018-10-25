@@ -61,7 +61,7 @@ instance.interceptors.response.use((res) => {
 
 module.exports = {
 
-	setupRequestPrefix(proxy) {
+	setupRequestProxy(proxy) {
 		prefix = proxy
 	},
 

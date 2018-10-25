@@ -1,6 +1,6 @@
 {
   "name": "axios-fetch-server",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "axios fetch wrapper for node",
   "main": "src/index.js",
   "repository": {
