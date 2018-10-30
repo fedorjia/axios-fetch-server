@@ -35,7 +35,7 @@ instance.interceptors.request.use((config) => {
  */
 instance.interceptors.response.use((res) => {
 	const data = res.data;
-	if (data.status !== 22000) {
+	if (data.status !== 200) {
 		return Promise.reject({status: data.status, body: data.body})
 	}
 	return data.body
