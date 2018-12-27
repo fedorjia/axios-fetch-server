@@ -37,12 +37,9 @@ class Fetch {
 	 */
 	addDefaultRequestInterceptor() {
 		this.axiosInstance.interceptors.request.use((config) => {
-			const extra = this.getRequestExtra()
+			config.headers = this.getRequestExtra()
 
-			return {
-				...config,
-				...extra
-			}
+			return config
 		}, (err) => {
 			return Promise.reject(err);
 		});
@@ -86,12 +83,13 @@ class Fetch {
 		return this.baseURL
 	}
 
-	setRequestExtra(extra = {}) {
+	addRequestExtra(extra = {}) {
 		if (extra.baseURL) {
 			this.baseURL = extra.baseURL
+			delete extra.baseURL
 		}
-		delete extra.baseURL
-		this.extra = extra
+
+		Object.assign(this.extra, extra)
 	}
 
 	getRequestExtra() {
