@@ -1,9 +1,14 @@
 const axios = require('axios')
 
+const defaults = {
+	baseURL: '',
+	basePath: '',
+	headers: {}
+}
+
 class Fetch {
 	constructor() {
-		this.baseURL = ''
-		this.extra = {}
+		this.option = defaults
 
 		this.axiosInstance = axios.create({
 			timeout: 6000,
@@ -37,7 +42,7 @@ class Fetch {
 	 */
 	addDefaultRequestInterceptor() {
 		this.axiosInstance.interceptors.request.use((config) => {
-			config.headers = this.getRequestExtra()
+			config.headers = this.getRequestHeaders()
 
 			return config
 		}, (err) => {
@@ -76,24 +81,30 @@ class Fetch {
 	}
 
 	setRequestBaseURL(baseURL) {
-		this.baseURL = baseURL
+		this.option.baseURL = baseURL
 	}
 
-	getRequestBaseURL() {
-		return this.baseURL
+	setRequestBasePath(basePath) {
+		this.option.basePath = basePath
 	}
 
-	addRequestExtra(extra = {}) {
-		if (extra.baseURL) {
-			this.baseURL = extra.baseURL
-			delete extra.baseURL
+	setRequestOption(option) {
+		if (option.headers) {
+			this.addRequestHeaders(option.headers)
+			delete option.headers
 		}
-
-		Object.assign(this.extra, extra)
+		Object.assign(this.option, option)
 	}
 
-	getRequestExtra() {
-		return this.extra
+	addRequestHeaders(headers = {}) {
+		this.option.headers = {
+			...this.option.headers,
+			headers
+		}
+	}
+
+	getRequestHeaders() {
+		return this.option.headers
 	}
 
 	async raw(option) {
