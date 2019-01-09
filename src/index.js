@@ -112,7 +112,7 @@ class Fetch {
 	}
 
 	async request(option) {
-		return await this.axiosInstance(this.baseURL + option.url)
+		return await this.axiosInstance(this.option.baseURL + option.url)
 	}
 
 	async get(url, params = {}) {
